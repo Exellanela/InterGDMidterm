@@ -23,10 +23,15 @@ public class MouseMove : MonoBehaviour {
 			0f //overriding z
 		);
 
+		/*
 		//if user clicks in this game window, then lock the mouse
 		if (Input.GetMouseButtonDown(0)) {
 			Cursor.visible = false; //hides the cursor
 			Cursor.lockState = CursorLockMode.Locked; //locks cursor to the center of the window
 		}
+		*/
+
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
 	}
 }

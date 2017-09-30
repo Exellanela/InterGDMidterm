@@ -10,9 +10,10 @@ public class CouchClick : MonoBehaviour {
 	private Timer timerScript;
 
 	public GameObject player;
-	public Vector3 playerPos;
+	Vector3 playerPos;
 	public Canvas LeftTVviewCanvas;
 	public Canvas RightTVviewCanvas;
+	public Canvas mapButtonCanvas;
 
 	Collider couchTrigger;
 
@@ -31,10 +32,15 @@ public class CouchClick : MonoBehaviour {
 		//Debug.Log(playerPos);
 		if (Input.GetMouseButtonUp(0)) {
 			//Debug.Log ("clicked");
-			//mouseMoveScript.enabled = false;
+			LeftTVviewCanvas.enabled = true;
+			RightTVviewCanvas.enabled = true;
+			mapButtonCanvas.enabled = true;
 			playerMoveScript.enabled = false;
+			mouseMoveScript.enabled = false;
 
 			playerPos = new Vector3 (0f, 1.9f, 7.6f);
+
+			timerScript.timerGo = true;
 		}
 	}
 
@@ -43,6 +49,18 @@ public class CouchClick : MonoBehaviour {
 			couchTrigger.enabled = false;
 		} else {
 			couchTrigger.enabled = true;
+		}
+
+		if (Input.GetMouseButtonUp(1)) {
+			LeftTVviewCanvas.enabled = false;
+			RightTVviewCanvas.enabled = false;
+			mapButtonCanvas.enabled = false;
+			playerMoveScript.enabled = true;
+			mouseMoveScript.enabled = true;
+
+			playerPos = new Vector3 (-6.7f, 1f, 8.5f);
+
+			timerScript.timerGo = false;
 		}
 	}
 }

@@ -7,19 +7,16 @@ using UnityEngine.UI;
 // THIS SCRIPT WILL BE TURNED OFF AS SOON AS THE PLAYER STARTS THE GAME (NOT ON STARTUP)
 public class StartScript : MonoBehaviour {
 
-	private CouchClick couchScript;
 	private PlayerMove playerScript;
-	private Timer timerScript;
+	//private Timer timerScript;
 	private MouseMove mouseScript;
 
 
-	void Start() {
+	void Awake() {
 		playerScript = FindObjectOfType<PlayerMove> ();
-		timerScript = FindObjectOfType<Timer> ();
-		couchScript = FindObjectOfType<CouchClick> ();
+		//timerScript = FindObjectOfType<Timer> ();
 		mouseScript = FindObjectOfType<MouseMove> ();
 
-		couchScript.playerPos = new Vector3 (0f, 0f, 7.6f);
 		playerScript.enabled = false;
 		mouseScript.enabled = false;
 	}
