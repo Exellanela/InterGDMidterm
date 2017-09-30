@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CouchClick : MonoBehaviour {
 
@@ -9,21 +10,27 @@ public class CouchClick : MonoBehaviour {
 	private Timer timerScript;
 
 	public GameObject player;
-	Vector3 playerPos;
+	public Vector3 playerPos;
+	public Canvas LeftTVviewCanvas;
+	public Canvas RightTVviewCanvas;
+
+	Collider couchTrigger;
 
 
 	void Start() {
 		mouseMoveScript = FindObjectOfType<MouseMove> ();
 		playerMoveScript = FindObjectOfType<PlayerMove> ();
 		timerScript = FindObjectOfType<Timer> ();
+
+		couchTrigger = GetComponent<Collider> ();
 	}
 
 	void OnMouseOver() {
 		//Debug.Log ("over");
 		playerPos = player.transform.position;
-		Debug.Log(playerPos);
+		//Debug.Log(playerPos);
 		if (Input.GetMouseButtonUp(0)) {
-			Debug.Log ("clicked");
+			//Debug.Log ("clicked");
 			//mouseMoveScript.enabled = false;
 			playerMoveScript.enabled = false;
 
@@ -32,6 +39,10 @@ public class CouchClick : MonoBehaviour {
 	}
 
 	void Update() {
-		
+		if (LeftTVviewCanvas.enabled || RightTVviewCanvas.enabled) {
+			couchTrigger.enabled = false;
+		} else {
+			couchTrigger.enabled = true;
+		}
 	}
 }

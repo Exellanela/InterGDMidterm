@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour {
 	public Text timerText;
 	public Text timeLeftText;
 
-	bool timerGo = true;
+	public bool timerGo = true;
 	bool timeReqAchieved;
 
 
