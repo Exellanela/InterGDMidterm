@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 5cf9f94c44e2a644e81cf4ae71c4bfc9
+timeCreated: 1506789750
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: chasing the ice cream truck
+  fontNames:
+  - chasing the ice cream truck
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

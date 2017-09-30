@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 5f1838c110484a44d8dbf4f599bc50a4
+timeCreated: 1506789672
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Kosal says hy
+  fontNames:
+  - Kosal says hy
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
