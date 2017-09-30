@@ -25,7 +25,22 @@ public class NPCSpawner : MonoBehaviour {
 		if (startSpawnTimer <= 0.001f) {
 			DecideLocation (); //might be decided based on current location of original...so just keep it out of view
 			//Debug.Log (locationNum);
-			Instantiate (NPC, location, Quaternion.identity);
+			//Instantiate (NPC, location, Quaternion.identity);
+
+			//TESTING--------------------------------------------------------------------------------------------------------------
+			if (locationNum == 1 && !locOne) {
+				Instantiate (NPC, location, Quaternion.identity);
+				locOne = true;
+			}
+			if (locationNum == 2 && !locTwo) {
+				Instantiate (NPC, location, Quaternion.identity);
+				locTwo = true;
+			}
+			if (locationNum == 3 && !locThree) {
+				Instantiate (NPC, location, Quaternion.identity);
+				locThree = true;
+			}
+
 
 			startSpawnTimer = 5f;
 		}
