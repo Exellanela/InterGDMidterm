@@ -9,8 +9,8 @@ public class CouchClick : MonoBehaviour {
 	private PlayerMove playerMoveScript;
 	private Timer timerScript;
 
-	public GameObject player;
-	Vector3 playerPos;
+	public GameObject moveablePlayer;
+	public GameObject sittingPlayer;
 	public Canvas LeftTVviewCanvas;
 	public Canvas RightTVviewCanvas;
 	public Canvas mapButtonCanvas;
@@ -22,24 +22,26 @@ public class CouchClick : MonoBehaviour {
 		mouseMoveScript = FindObjectOfType<MouseMove> ();
 		playerMoveScript = FindObjectOfType<PlayerMove> ();
 		timerScript = FindObjectOfType<Timer> ();
-
 		couchTrigger = GetComponent<Collider> ();
+
+		moveablePlayer.SetActive (false);
 	}
 
 	void OnMouseOver() {
 		//Debug.Log ("over");
-		playerPos = player.transform.position;
-		//Debug.Log(playerPos);
 		if (Input.GetMouseButtonUp(0)) {
 			//Debug.Log ("clicked");
+			Cursor.visible = true;
+			Cursor.lockState = CursorLockMode.None;
+
+			sittingPlayer.SetActive (true);
+			moveablePlayer.SetActive (false);
+
 			LeftTVviewCanvas.enabled = true;
 			RightTVviewCanvas.enabled = true;
 			mapButtonCanvas.enabled = true;
 			playerMoveScript.enabled = false;
 			mouseMoveScript.enabled = false;
-
-			playerPos = new Vector3 (0f, 1.9f, 7.6f);
-
 			timerScript.timerGo = true;
 		}
 	}
@@ -52,14 +54,14 @@ public class CouchClick : MonoBehaviour {
 		}
 
 		if (Input.GetMouseButtonUp(1)) {
+			sittingPlayer.SetActive (false);
+			moveablePlayer.SetActive (true);
+
 			LeftTVviewCanvas.enabled = false;
 			RightTVviewCanvas.enabled = false;
 			mapButtonCanvas.enabled = false;
 			playerMoveScript.enabled = true;
 			mouseMoveScript.enabled = true;
-
-			playerPos = new Vector3 (-6.7f, 1f, 8.5f);
-
 			timerScript.timerGo = false;
 		}
 	}
