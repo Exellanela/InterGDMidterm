@@ -10,6 +10,8 @@ public class PlayerMove : MonoBehaviour {
 	public float moveSpeed;
 	public float gravityStrength;
 
+	public bool holdingItem;
+
 
 	void Start() {
 		RB = GetComponent<Rigidbody> ();

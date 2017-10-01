@@ -45,7 +45,7 @@ public class Timer : MonoBehaviour {
 
 		//GAME OVER
 		if (timeLeftTimer >= 240f && !timeReqAchieved) {
-			timeLeftText.text = "12:00 PM";
+			timeLeftText.text = "12:00 AM";
 			//activate gameover canvas
 		}
 

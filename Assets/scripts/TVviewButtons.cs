@@ -21,7 +21,7 @@ public class TVviewButtons : MonoBehaviour {
 	void Awake() {
 		LeftTVviewCanvas.enabled = false;
 		MapCanvas.enabled = false;
-		MapButtonCanvas.enabled = true;
+		//MapButtonCanvas.enabled = true;
 	}
 
 	void Start() {
@@ -72,6 +72,8 @@ public class TVviewButtons : MonoBehaviour {
 		
 	public void MapButton() {
 		//Debug.Log (mapActive);
+		//Debug.Log (left);
+		//Debug.Log (right);
 		mapActive = !mapActive;
 	}
 }
