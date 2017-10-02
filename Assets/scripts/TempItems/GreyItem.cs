@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GreyItem : MonoBehaviour {
 
 	private PlayerMove playerScript;
+
 
 	void Start() {
 		playerScript = FindObjectOfType<PlayerMove> ();

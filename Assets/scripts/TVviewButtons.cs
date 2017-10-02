@@ -15,7 +15,7 @@ public class TVviewButtons : MonoBehaviour {
 
 	bool mapActive;
 	bool left;
-	bool right;
+	bool right = true;
 
 
 	void Awake() {
@@ -29,6 +29,8 @@ public class TVviewButtons : MonoBehaviour {
 	}
 
 	void Update() {
+		//Debug.Log (mapActive);
+
 		if (mapActive) {
 			MapCanvas.enabled = true;
 			LeftTVviewCanvas.enabled = false;

@@ -1,16 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour {
+
+	private MouseMove mouseScript;
 
 	Vector3 inputVector;
 	Rigidbody RB;
 
-	public float moveSpeed;
-	public float gravityStrength;
+	public Canvas mapCanvas;
+	bool mapActive;
+
+	float moveSpeed;
+	float gravityStrength = 0.1f;
 
 	public bool holdingItem;
+	public Text heldItemText;
 
 	//FIX THIS LATER MAYBE HOPEFULLY SO THAT ITS NOT ONE FOR EVERY ITEM CUZ THAT SUCKS
 	public bool orange;
@@ -20,6 +27,7 @@ public class PlayerMove : MonoBehaviour {
 
 	void Start() {
 		RB = GetComponent<Rigidbody> ();
+		mouseScript = FindObjectOfType<MouseMove> ();
 	}
 
 	void Update() {
@@ -43,6 +51,30 @@ public class PlayerMove : MonoBehaviour {
 			orange = false;
 			green = false;
 			grey = false;
+		}
+
+		if (!orange && !green && !grey) { heldItemText.text = " "; }
+		if (orange) { heldItemText.text = "Orange"; }
+		if (green) { heldItemText.text = "Green"; }
+		if (grey) { heldItemText.text = "Grey"; }
+
+		//MAP----------------------------------------------------------------------------------------------
+		if (Input.GetKeyUp(KeyCode.Q)) {
+			mapActive = !mapActive;
+		}
+
+		if (mapActive) {
+			mapCanvas.enabled = true;
+			moveSpeed = 0f;
+			Cursor.visible = true;
+			Cursor.lockState = CursorLockMode.None;
+			mouseScript.enabled = false;
+		} else {
+			mapCanvas.enabled = false;
+			moveSpeed = 5f;
+			Cursor.visible = false;
+			Cursor.lockState = CursorLockMode.Locked;
+			mouseScript.enabled = true;
 		}
 	}
 

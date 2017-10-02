@@ -5,7 +5,7 @@ using UnityEngine;
 public class NPCSpawner : MonoBehaviour {
 
 	public Transform NPC;
-
+	public Renderer NPCRend;
 	float startSpawnTimer = 5f;
 
 	int locationNum; //location of spawn based on number generated
@@ -16,6 +16,17 @@ public class NPCSpawner : MonoBehaviour {
 	public bool locTwo;
 	public bool locThree;
 
+	//change material but really its just the color
+	public Material orangeMat;
+	public Material greenMat;
+	public Material greyMat;
+	int matNum;
+
+
+	void Start() {
+		NPCRend = NPC.GetComponent<Renderer> ();
+		NPCRend.enabled = true;
+	}
 
 	void Update() {
 		//Debug.Log (startSpawnTimer);
@@ -23,9 +34,9 @@ public class NPCSpawner : MonoBehaviour {
 			startSpawnTimer -= Time.deltaTime;
 		}
 		if (startSpawnTimer <= 0.001f) {
-			DecideLocation (); //might be decided based on current location of original...so just keep it out of view
-			//Debug.Log (locationNum);
-			//Instantiate (NPC, location, Quaternion.identity);
+			DecideLocation(); //might be decided based on current location of original...so just keep it out of view
+			DecideItem();
+			Debug.Log (matNum);
 
 			//TESTING--------------------------------------------------------------------------------------------------------------
 			if (locationNum == 1 && !locOne) {
@@ -57,6 +68,19 @@ public class NPCSpawner : MonoBehaviour {
 		}
 		if (locationNum == 3) {
 			location = new Vector3 (-8.9f, 1.3f, 14.6f);
+		}
+	}
+
+	void DecideItem() {
+		matNum = Random.Range (1, 4);
+		if (matNum == 1) {
+			NPCRend.material = orangeMat;
+		}
+		if (matNum == 2) {
+			NPCRend.material = greenMat;
+		}
+		if (matNum == 3) {
+			NPCRend.material = greyMat;
 		}
 	}
 }

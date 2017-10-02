@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class NPCCheck : MonoBehaviour {
 
-	//FOR NOW CHECK FOR CLICK AND DESTROY-------------------------------------------------------
 	private NPCSpawner spawnerScript;
 
 

@@ -18,5 +18,7 @@ public class StartScript : MonoBehaviour {
 
 		playerScript.enabled = false;
 		mouseScript.enabled = false;
+
+		playerScript.heldItemText.text = " ";
 	}
 }
