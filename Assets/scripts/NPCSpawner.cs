@@ -16,6 +16,8 @@ public class NPCSpawner : MonoBehaviour {
 	public bool locTwo;
 	public bool locThree;
 
+	public bool NPCActive;
+
 	//change material but really its just the color
 	public Material orangeMat;
 	public Material greenMat;
@@ -42,21 +44,28 @@ public class NPCSpawner : MonoBehaviour {
 				DecideItem();
 				Instantiate (NPC, location, Quaternion.identity);
 				locOne = true;
+				NPCActive = true;
 			}
 			if (locationNum == 2 && !locTwo) {
 				DecideItem();
 				Instantiate (NPC, location, Quaternion.identity);
 				locTwo = true;
+				NPCActive = true;
 			}
 			if (locationNum == 3 && !locThree) {
 				DecideItem();
 				Instantiate (NPC, location, Quaternion.identity);
 				locThree = true;
+				NPCActive = true;
 			}
 
 
 			startSpawnTimer = 5f;
 		}
+
+		if (locOne || locTwo || locThree) {
+			NPCActive = true;
+		} else { NPCActive = false; }
 	}
 
 	void DecideLocation() {

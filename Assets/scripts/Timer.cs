@@ -5,17 +5,25 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour {
 
+	private NPCSpawner spawnerScript;
+
 	float timer = 0f;
 	float timeLeftTimer = 0f;
 	public Text timerText;
 	public Text timeLeftText;
+	public Image alertImage;
 
 	public bool timerGo = true;
 	bool timeReqAchieved;
 
+	public Canvas VictoryCanvas;
+
 
 	void Start() {
+		alertImage.enabled = false;
 		timeLeftText.text = "4:00 PM";
+		spawnerScript = FindObjectOfType<NPCSpawner> ();
+		VictoryCanvas.enabled = false;
 	}
 
 	void Update() {
@@ -49,6 +57,11 @@ public class Timer : MonoBehaviour {
 			//activate gameover canvas
 		}
 
+		//ALERT
+		if (spawnerScript.NPCActive) {
+			StartCoroutine ("Alert");
+		}
+
 
 		//------------------------------------------------------------- Time Requirement
 		timerText.text = "TV time accumulated:\n" + timer.ToString ();
@@ -57,10 +70,22 @@ public class Timer : MonoBehaviour {
 			timer += Time.deltaTime;
 		}
 
-		//IF REQ IS MET
-		if (timeReqAchieved) {
-			//activate victory canvas
-			//maybe disable other text
+		//VICTORy
+		if (timer >= 90f) {
+			timeReqAchieved = true;
 		}
+
+		if (timeReqAchieved) {
+			VictoryCanvas.enabled = true;
+			Time.timeScale = 0f;
+		}
+
+	}
+
+	IEnumerator Alert() {
+		alertImage.enabled = true;
+		yield return new WaitForSeconds (1f);
+		alertImage.enabled = false;
+		yield return new WaitForSeconds (1.3f);
 	}
 }

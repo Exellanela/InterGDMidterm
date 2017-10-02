@@ -18,19 +18,52 @@ public class NPCCheck : MonoBehaviour {
 	void Start() {
 		spawnerScript = FindObjectOfType<NPCSpawner> ();
 		playerScript = FindObjectOfType<PlayerMove> ();
+
+		//TRY1
+		//Debug.Log ("orange" + orange);
+		//Debug.Log ("green" + green);
+		//Debug.Log ("grey" + grey);
+		//I THINK IT WORKED
+		if (spawnerScript.matNum == 1) {
+			orange = true;
+			green = false;
+			grey = false;
+		}
+		else if (spawnerScript.matNum == 2) {
+			green = true;
+			orange = false;
+			grey = false;
+		}
+		else if (spawnerScript.matNum == 3) {
+			grey = true;
+			orange = false;
+			green = false;
+		}
 	}
 
 	void OnMouseOver() {
 		if (Input.GetMouseButtonUp(0)) {
-			if (spawnerScript.matNum == 1 && playerScript.orange) {
-				Debug.Log ("orange");
+			if (orange && playerScript.orange == true) {
+				Destroy (gameObject);
+				playerScript.orange = false;
+				playerScript.holdingItem = false;
 			}
-			if (spawnerScript.matNum == 2 && playerScript.green) {
-				Debug.Log ("green");
+			if (green && playerScript.green == true) {
+				Destroy (gameObject);
+				playerScript.holdingItem = false;
+				playerScript.green = false;
 			}
-			if (spawnerScript.matNum == 3 && playerScript.grey) {
-				Debug.Log ("grey");
+			if (grey && playerScript.grey == true) {
+				Destroy (gameObject);
+				playerScript.holdingItem = false;
+				playerScript.grey = false;
 			}
+			/*
+			if ((playerScript.grey == true && !grey) || (playerScript.green == true && !green) || (playerScript.orange == true && !orange)) {
+				playerScript.wrongItemText.text = "You don't have the right item.";
+				playerScript.wrongTextTimer -= Time.deltaTime;
+			}
+			*/
 		}
 	}
 

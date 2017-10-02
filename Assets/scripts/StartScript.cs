@@ -11,6 +11,10 @@ public class StartScript : MonoBehaviour {
 	private PlayerMove playerScript;
 	private MouseMove mouseScript;
 
+	public Canvas StartupCanvas;
+
+	public Text startupText;
+
 
 	void Awake() {
 		playerScript = FindObjectOfType<PlayerMove> ();
@@ -21,5 +25,19 @@ public class StartScript : MonoBehaviour {
 
 		playerScript.heldItemText.text = " ";
 		playerScript.wrongItemText.text = " ";
+
+		Time.timeScale = 0f;
+	}
+
+	void Start() {
+		StartupCanvas.enabled = true;
+		startupText.text = "Get the number up in the left corner to 90 to win. \nThe flashing red light means someone needs your help. \nDon't leave them waiting for too long.";
+	}
+
+	void Update() {
+		if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) {
+			StartupCanvas.enabled = false;
+			Time.timeScale = 1f;
+		}
 	}
 }
