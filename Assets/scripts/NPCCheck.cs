@@ -7,6 +7,7 @@ public class NPCCheck : MonoBehaviour {
 
 	private NPCSpawner spawnerScript;
 	private PlayerMove playerScript;
+	private Timer timerScript;
 
 	bool timerGo;
 
@@ -14,10 +15,17 @@ public class NPCCheck : MonoBehaviour {
 	public bool green;
 	public bool grey;
 
+	TextMesh timeLimitText;
+	float timeLimit;
+
 
 	void Start() {
 		spawnerScript = FindObjectOfType<NPCSpawner> ();
 		playerScript = FindObjectOfType<PlayerMove> ();
+		timerScript = FindObjectOfType<Timer> ();
+
+		timeLimit = spawnerScript.tlCountdown;
+		timeLimitText = GetComponentInChildren<TextMesh> ();
 
 		//TRY1
 		//Debug.Log ("orange" + orange);
@@ -38,6 +46,21 @@ public class NPCCheck : MonoBehaviour {
 			grey = true;
 			orange = false;
 			green = false;
+		}
+	}
+
+	void Update() {
+		timeLimitText.text = timeLimit.ToString ();
+
+		if (timeLimit > 0.01f) {
+			timeLimit -= Time.deltaTime;
+		}
+
+		if (timeLimit <= 0.1f) {
+			if (timerScript.strikeB1 == false) { timerScript.strikeB1 = true; }
+			else if (timerScript.strikeB1 == true && timerScript.strikeB2 == false) { timerScript.strikeB2 = true; }
+			else if (timerScript.strikeB2 == true && timerScript.strikeB3 == false) { timerScript.strikeB3 = true; }
+			Destroy (gameObject);
 		}
 	}
 
@@ -66,57 +89,4 @@ public class NPCCheck : MonoBehaviour {
 			*/
 		}
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/*
-	void OnMouseOver() {
-		if (Input.GetMouseButtonUp (0)) {
-			if (transform.position.z >= 14.6f) {
-				spawnerScript.locThree = false;
-			} else if (transform.position.z < 10f && transform.position.z > 8f) {
-				spawnerScript.locTwo = false;
-			} else if (transform.position.z <= 3.6f) {
-				spawnerScript.locOne = false;
-			}
-		}
-	}
-		
-	void Update() {
-		//CHECK MATERIAL---------------------------------------------------------------------------------------------
-		if (Input.GetMouseButtonUp (0)) {
-			if (spawnerScript.NPCRend.material == spawnerScript.orangeMat && playerScript.orange) {
-				Destroy (gameObject);
-			} else if (spawnerScript.NPCRend.material == spawnerScript.greenMat && playerScript.green) {
-				Destroy (gameObject);
-			} else if (spawnerScript.NPCRend.material == spawnerScript.greyMat && playerScript.grey) {
-				Destroy (gameObject);
-			} else {
-				playerScript.wrongItemText.text = "You don't have the right item.";
-				timerGo = true;
-			}
-		}
-
-		if (timerGo) {
-			playerScript.wrongTextTimer -= Time.deltaTime;
-		}
-		if (playerScript.wrongTextTimer <= 0.1f) {
-			timerGo = false;
-			playerScript.wrongTextTimer = 5f;
-			playerScript.wrongItemText.text = " ";
-		}
-	}
-	*/
 }

@@ -22,8 +22,8 @@ public class CouchClick : MonoBehaviour {
 		mouseMoveScript = FindObjectOfType<MouseMove> ();
 		playerMoveScript = FindObjectOfType<PlayerMove> ();
 		timerScript = FindObjectOfType<Timer> ();
-		couchTrigger = GetComponent<Collider> ();
 
+		couchTrigger = GetComponent<Collider> ();
 		moveablePlayer.SetActive (false);
 	}
 

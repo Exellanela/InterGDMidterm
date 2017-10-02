@@ -24,10 +24,17 @@ public class NPCSpawner : MonoBehaviour {
 	public Material greyMat;
 	public int matNum;
 
+	//decide time limit
+	int tlNum;
+	TextMesh NPCtimeLimit;
+	public float tlCountdown;
+
 
 	void Start() {
 		NPCRend = NPC.GetComponent<Renderer> ();
 		NPCRend.enabled = true;
+
+		NPCtimeLimit = GameObject.Find ("NPCTimerText").GetComponent<TextMesh> ();
 	}
 
 	void Update() {
@@ -42,18 +49,24 @@ public class NPCSpawner : MonoBehaviour {
 			//TESTING--------------------------------------------------------------------------------------------------------------
 			if (locationNum == 1 && !locOne) {
 				DecideItem();
+				DecideTime ();
+				NPCtimeLimit.text = tlCountdown.ToString ();
 				Instantiate (NPC, location, Quaternion.identity);
 				locOne = true;
 				NPCActive = true;
 			}
 			if (locationNum == 2 && !locTwo) {
 				DecideItem();
+				DecideTime ();
+				NPCtimeLimit.text = tlCountdown.ToString ();
 				Instantiate (NPC, location, Quaternion.identity);
 				locTwo = true;
 				NPCActive = true;
 			}
 			if (locationNum == 3 && !locThree) {
 				DecideItem();
+				DecideTime ();
+				NPCtimeLimit.text = tlCountdown.ToString ();
 				Instantiate (NPC, location, Quaternion.identity);
 				locThree = true;
 				NPCActive = true;
@@ -92,6 +105,19 @@ public class NPCSpawner : MonoBehaviour {
 		}
 		if (matNum == 3) {
 			NPCRend.material = greyMat;
+		}
+	}
+
+	void DecideTime() {
+		tlNum = Random.Range (1, 4);
+		if (tlNum == 1) {
+			tlCountdown = 20f;
+		}
+		if (tlNum == 2) {
+			tlCountdown = 15f;
+		}
+		if (tlNum == 3) {
+			tlCountdown = 25f;
 		}
 	}
 }
