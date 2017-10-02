@@ -20,5 +20,6 @@ public class StartScript : MonoBehaviour {
 		mouseScript.enabled = false;
 
 		playerScript.heldItemText.text = " ";
+		playerScript.wrongItemText.text = " ";
 	}
 }

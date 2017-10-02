@@ -20,7 +20,7 @@ public class NPCSpawner : MonoBehaviour {
 	public Material orangeMat;
 	public Material greenMat;
 	public Material greyMat;
-	int matNum;
+	public int matNum;
 
 
 	void Start() {
@@ -35,19 +35,21 @@ public class NPCSpawner : MonoBehaviour {
 		}
 		if (startSpawnTimer <= 0.001f) {
 			DecideLocation(); //might be decided based on current location of original...so just keep it out of view
-			DecideItem();
-			Debug.Log (matNum);
+			//Debug.Log (matNum);
 
 			//TESTING--------------------------------------------------------------------------------------------------------------
 			if (locationNum == 1 && !locOne) {
+				DecideItem();
 				Instantiate (NPC, location, Quaternion.identity);
 				locOne = true;
 			}
 			if (locationNum == 2 && !locTwo) {
+				DecideItem();
 				Instantiate (NPC, location, Quaternion.identity);
 				locTwo = true;
 			}
 			if (locationNum == 3 && !locThree) {
+				DecideItem();
 				Instantiate (NPC, location, Quaternion.identity);
 				locThree = true;
 			}

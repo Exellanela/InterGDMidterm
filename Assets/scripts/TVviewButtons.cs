@@ -31,6 +31,10 @@ public class TVviewButtons : MonoBehaviour {
 	void Update() {
 		//Debug.Log (mapActive);
 
+		if (Input.GetKeyUp(KeyCode.Q)) {
+			MapButton ();
+		}
+
 		if (mapActive) {
 			MapCanvas.enabled = true;
 			LeftTVviewCanvas.enabled = false;

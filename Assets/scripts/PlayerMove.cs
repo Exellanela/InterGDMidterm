@@ -18,6 +18,8 @@ public class PlayerMove : MonoBehaviour {
 
 	public bool holdingItem;
 	public Text heldItemText;
+	public Text wrongItemText;
+	public float wrongTextTimer = 5f;
 
 	//FIX THIS LATER MAYBE HOPEFULLY SO THAT ITS NOT ONE FOR EVERY ITEM CUZ THAT SUCKS
 	public bool orange;
