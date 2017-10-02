@@ -12,6 +12,11 @@ public class PlayerMove : MonoBehaviour {
 
 	public bool holdingItem;
 
+	//FIX THIS LATER MAYBE HOPEFULLY SO THAT ITS NOT ONE FOR EVERY ITEM CUZ THAT SUCKS
+	public bool orange;
+	public bool green;
+	public bool grey;
+
 
 	void Start() {
 		RB = GetComponent<Rigidbody> ();
@@ -25,6 +30,19 @@ public class PlayerMove : MonoBehaviour {
 
 		if (inputVector.magnitude > 1) {
 			inputVector = Vector3.Normalize(inputVector);
+		}
+
+		//ITEMS-----------------------------------------------------------------------------------------------
+		if (orange || green || grey) {
+			holdingItem = true;
+		} else {
+			holdingItem = false;
+		}
+
+		if (Input.GetMouseButtonUp(1)) {
+			orange = false;
+			green = false;
+			grey = false;
 		}
 	}
 
