@@ -51,7 +51,7 @@ public class NPCSpawner : MonoBehaviour {
 				DecideItem();
 				DecideTime ();
 				NPCtimeLimit.text = tlCountdown.ToString ();
-				Instantiate (NPC, location, Quaternion.identity);
+				Instantiate (NPC, location, Quaternion.Euler(0f, 180f, 0f));
 				locOne = true;
 				NPCActive = true;
 			}
@@ -59,7 +59,7 @@ public class NPCSpawner : MonoBehaviour {
 				DecideItem();
 				DecideTime ();
 				NPCtimeLimit.text = tlCountdown.ToString ();
-				Instantiate (NPC, location, Quaternion.identity);
+				Instantiate (NPC, location, Quaternion.Euler(0f, -70f, 0f));
 				locTwo = true;
 				NPCActive = true;
 			}
@@ -67,7 +67,7 @@ public class NPCSpawner : MonoBehaviour {
 				DecideItem();
 				DecideTime ();
 				NPCtimeLimit.text = tlCountdown.ToString ();
-				Instantiate (NPC, location, Quaternion.identity);
+				Instantiate (NPC, location, Quaternion.Euler(0f, -10f, 0f));
 				locThree = true;
 				NPCActive = true;
 			}

@@ -80,7 +80,10 @@ public class Timer : MonoBehaviour {
 
 		//ALERT
 		if (spawnerScript.NPCActive) {
-			StartCoroutine ("Alert");
+			//StartCoroutine ("Alert");
+			alertImage.enabled = true;
+		} else {
+			alertImage.enabled = false;
 		}
 
 

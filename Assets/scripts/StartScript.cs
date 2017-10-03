@@ -31,7 +31,7 @@ public class StartScript : MonoBehaviour {
 
 	void Start() {
 		StartupCanvas.enabled = true;
-		startupText.text = "Get the number up in the left corner to 90 to win. \nThe flashing red light means someone needs your help. \nDon't leave them waiting for too long.";
+		startupText.text = "Get the number up in the left corner to 90 before 12:00 to win. \nThe flashing red light means someone needs your help. \nDon't leave them waiting for too long or you'll get a red strike on the right side of your screen. \nThree strikes and you're out.";
 	}
 
 	void Update() {
