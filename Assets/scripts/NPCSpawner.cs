@@ -26,6 +26,7 @@ public class NPCSpawner : MonoBehaviour {
 	public Material orangeMat;
 	public Material greenMat;
 	public Material greyMat;
+	public Material yellowMat;
 	public int matNum;
 
 	//decide time limit
@@ -109,8 +110,13 @@ public class NPCSpawner : MonoBehaviour {
 		if (matNum == 2) {
 			NPCRend.material = greenMat;
 		}
+		/*
 		if (matNum == 3) {
 			NPCRend.material = greyMat;
+		}
+		*/
+		if (matNum == 3) {
+			NPCRend.material = yellowMat;
 		}
 	}
 }

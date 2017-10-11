@@ -59,6 +59,7 @@ public class Instructions : MonoBehaviour {
 	public bool orange;
 	public bool green;
 	public bool grey;
+	public bool yellow;
 	public Image centerMouseImage;
 
 
@@ -203,7 +204,7 @@ public class Instructions : MonoBehaviour {
 		}
 
 		//ITEMS-----------------------------------------------------------------------------------------------
-		if (orange || green || grey) {
+		if (orange || green || grey || yellow) {
 			holdingItem = true;
 		} else {
 			holdingItem = false;
@@ -213,12 +214,14 @@ public class Instructions : MonoBehaviour {
 			orange = false;
 			green = false;
 			grey = false;
+			yellow = false;
 		}
 
-		if (!orange && !green && !grey) { heldItemText.text = " "; }
+		if (!orange && !green && !grey && !yellow) { heldItemText.text = " "; }
 		if (orange) { heldItemText.text = "Orange"; }
 		if (green) { heldItemText.text = "Green"; }
 		if (grey) { heldItemText.text = "Grey"; }
+		if (yellow) { heldItemText.text = "Yellow"; }
 
 		//LEAVE THE COUCH-------------------------------------------------
 		if (tvView && Input.GetMouseButtonUp(1)) {

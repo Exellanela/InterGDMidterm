@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class GreenItem : MonoBehaviour {
+public class YellowItem : MonoBehaviour {
 
 	private Instructions instrucScript;
 
@@ -13,10 +12,10 @@ public class GreenItem : MonoBehaviour {
 	}
 
 	void OnMouseOver() {
-		Debug.Log ("over g");
+		Debug.Log ("over-y");
 		if (Input.GetMouseButtonUp(0)) {
 			if (instrucScript.holdingItem == false) {
-				instrucScript.green = true;
+				instrucScript.yellow = true;
 			}
 		}
 	}

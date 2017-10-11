@@ -54,9 +54,16 @@ public class OnNPC : MonoBehaviour {
 				instrucScript.green = false;
 				instrucScript.holdingItem = false;
 			}
+			/*
 			if (matNum == 3 && instrucScript.grey == true) {
 				Destroy (gameObject);
 				instrucScript.grey = false;
+				instrucScript.holdingItem = false;
+			}
+			*/
+			if (matNum == 3 && instrucScript.yellow == true) {
+				Destroy (gameObject);
+				instrucScript.yellow = false;
 				instrucScript.holdingItem = false;
 			}
 		}
