@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class GreyItem : MonoBehaviour {
 
-	private PlayerMove playerScript;
+	private Instructions instrucScript;
 
 
 	void Start() {
-		playerScript = FindObjectOfType<PlayerMove> ();
+		instrucScript = FindObjectOfType<Instructions> ();
 	}
 
 	void OnMouseOver() {
 		if (Input.GetMouseButtonUp(0)) {
-			if (playerScript.holdingItem == false) {
-				playerScript.grey = true;
+			if (instrucScript.holdingItem == false) {
+				instrucScript.grey = true;
 			}
 		}
 	}

@@ -5,19 +5,17 @@ using UnityEngine.UI;
 
 public class OrangeItem : MonoBehaviour {
 
-	//THIS IS GONNA SUCK -> MAKE ONE OF THESE FOR EACH ITEM
-
-	private PlayerMove playerScript;
+	private Instructions instrucScript;
 
 
 	void Start() {
-		playerScript = FindObjectOfType<PlayerMove> ();
+		instrucScript = FindObjectOfType<Instructions> ();
 	}
 
 	void OnMouseOver() {
 		if (Input.GetMouseButtonUp(0)) {
-			if (playerScript.holdingItem == false) {
-				playerScript.orange = true;
+			if (instrucScript.holdingItem == false) {
+				instrucScript.orange = true;
 			}
 		}
 	}

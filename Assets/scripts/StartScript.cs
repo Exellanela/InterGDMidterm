@@ -15,6 +15,9 @@ public class StartScript : MonoBehaviour {
 
 	public Text startupText;
 
+	bool mapActive;
+	public Canvas mapCanvas;
+
 
 	void Awake() {
 		playerScript = FindObjectOfType<PlayerMove> ();
@@ -31,13 +34,30 @@ public class StartScript : MonoBehaviour {
 
 	void Start() {
 		StartupCanvas.enabled = true;
-		startupText.text = "Get the number up in the left corner to 90 before 12:00 to win. \nThe flashing red light means someone needs your help. \nDon't leave them waiting for too long or you'll get a red strike on the right side of your screen. \nThree strikes and you're out.";
+		startupText.text = "Get TV time to 90 before 12:00 to win. \nYou also need to help people find the thing (color) they're looking for and bring it to them. \nDon't leave them waiting for too long or you'll get a red strike on the right side of your screen. \nThree strikes and you're out. \nRight click to leave the couch. \nLeft click the couch to sit again. \nPress Q to open the map if you need it.";
 	}
 
 	void Update() {
 		if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) {
 			StartupCanvas.enabled = false;
 			Time.timeScale = 1f;
+		}
+
+		//MAP----------------------------------------------------------------------------------------------
+		if (Input.GetKeyUp(KeyCode.Q)) {
+			mapActive = !mapActive;
+		}
+
+		if (mapActive) {
+			mapCanvas.enabled = true;
+			playerScript.moveSpeed = 0f;
+			Cursor.visible = true;
+			Cursor.lockState = CursorLockMode.None;
+			mouseScript.enabled = false;
+		} else {
+			mapCanvas.enabled = false;
+			playerScript.moveSpeed = 5f;
+			mouseScript.enabled = true;
 		}
 	}
 }

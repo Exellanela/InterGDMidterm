@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NPCSpawner : MonoBehaviour {
 
 	public Transform NPC;
 	public Renderer NPCRend;
-	float startSpawnTimer = 5f;
+	public Image alertImage;
+
+
+	float startSpawnTimer = 7f;
 
 	int locationNum; //location of spawn based on number generated
 	Vector3 location;
@@ -25,16 +29,14 @@ public class NPCSpawner : MonoBehaviour {
 	public int matNum;
 
 	//decide time limit
-	int tlNum;
-	TextMesh NPCtimeLimit;
+	public int tlMin;
 	public float tlCountdown;
 
 
 	void Start() {
 		NPCRend = NPC.GetComponent<Renderer> ();
 		NPCRend.enabled = true;
-
-		NPCtimeLimit = GameObject.Find ("NPCTimerText").GetComponent<TextMesh> ();
+		alertImage.enabled = false;
 	}
 
 	void Update() {
@@ -43,42 +45,46 @@ public class NPCSpawner : MonoBehaviour {
 			startSpawnTimer -= Time.deltaTime;
 		}
 		if (startSpawnTimer <= 0.001f) {
-			DecideLocation(); //might be decided based on current location of original...so just keep it out of view
+			DecideLocation (); //might be decided based on current location of original...so just keep it out of view
 			//Debug.Log (matNum);
 
 			//TESTING--------------------------------------------------------------------------------------------------------------
 			if (locationNum == 1 && !locOne) {
-				DecideItem();
-				DecideTime ();
-				NPCtimeLimit.text = tlCountdown.ToString ();
-				Instantiate (NPC, location, Quaternion.Euler(0f, 180f, 0f));
+				DecideItem ();
+				tlMin = Random.Range (12, 30);
+				Instantiate (NPC, location, Quaternion.Euler (0f, 180f, 0f));
 				locOne = true;
 				NPCActive = true;
 			}
 			if (locationNum == 2 && !locTwo) {
-				DecideItem();
-				DecideTime ();
-				NPCtimeLimit.text = tlCountdown.ToString ();
-				Instantiate (NPC, location, Quaternion.Euler(0f, -70f, 0f));
+				DecideItem ();
+				tlMin = Random.Range (12, 30);
+				Instantiate (NPC, location, Quaternion.Euler (0f, -70f, 0f));
 				locTwo = true;
 				NPCActive = true;
 			}
 			if (locationNum == 3 && !locThree) {
-				DecideItem();
-				DecideTime ();
-				NPCtimeLimit.text = tlCountdown.ToString ();
-				Instantiate (NPC, location, Quaternion.Euler(0f, -10f, 0f));
+				DecideItem ();
+				tlMin = Random.Range (12, 30);
+				Instantiate (NPC, location, Quaternion.Euler (0f, -10f, 0f));
 				locThree = true;
 				NPCActive = true;
 			}
+				
+			startSpawnTimer = Random.Range(14f, 30f);
 
+			if (NPCActive) {
+				alertImage.enabled = true;
+			} else {
+				alertImage.enabled = false;
+			}
 
-			startSpawnTimer = 5f;
+			if (locOne || locTwo || locThree) {
+				NPCActive = true;
+			} else {
+				NPCActive = false;
+			}
 		}
-
-		if (locOne || locTwo || locThree) {
-			NPCActive = true;
-		} else { NPCActive = false; }
 	}
 
 	void DecideLocation() {
@@ -105,19 +111,6 @@ public class NPCSpawner : MonoBehaviour {
 		}
 		if (matNum == 3) {
 			NPCRend.material = greyMat;
-		}
-	}
-
-	void DecideTime() {
-		tlNum = Random.Range (1, 4);
-		if (tlNum == 1) {
-			tlCountdown = 20f;
-		}
-		if (tlNum == 2) {
-			tlCountdown = 15f;
-		}
-		if (tlNum == 3) {
-			tlCountdown = 25f;
 		}
 	}
 }

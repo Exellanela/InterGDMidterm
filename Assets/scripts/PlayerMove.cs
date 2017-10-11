@@ -10,10 +10,7 @@ public class PlayerMove : MonoBehaviour {
 	Vector3 inputVector;
 	Rigidbody RB;
 
-	public Canvas mapCanvas;
-	bool mapActive;
-
-	float moveSpeed;
+	public float moveSpeed;
 	float gravityStrength = 0.1f;
 
 	public bool holdingItem;
@@ -59,25 +56,6 @@ public class PlayerMove : MonoBehaviour {
 		if (orange) { heldItemText.text = "Orange"; }
 		if (green) { heldItemText.text = "Green"; }
 		if (grey) { heldItemText.text = "Grey"; }
-
-		//MAP----------------------------------------------------------------------------------------------
-		if (Input.GetKeyUp(KeyCode.Q)) {
-			mapActive = !mapActive;
-		}
-
-		if (mapActive) {
-			mapCanvas.enabled = true;
-			moveSpeed = 0f;
-			Cursor.visible = true;
-			Cursor.lockState = CursorLockMode.None;
-			mouseScript.enabled = false;
-		} else {
-			mapCanvas.enabled = false;
-			moveSpeed = 5f;
-			Cursor.visible = false;
-			Cursor.lockState = CursorLockMode.Locked;
-			mouseScript.enabled = true;
-		}
 	}
 
 	void FixedUpdate() {

@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
+//really tho this is the script that controls pretty much everything that isn't object specific
+//this script stays active for the entirety of the game
 public class Timer : MonoBehaviour {
 
 	private NPCSpawner spawnerScript;
@@ -19,6 +22,8 @@ public class Timer : MonoBehaviour {
 
 	public Canvas VictoryCanvas;
 	public Canvas GameOverCanvas;
+	public Canvas mapCanvas;
+	bool mapActive;
 
 	public Image strike1;
 	public Image strike2;
@@ -26,6 +31,8 @@ public class Timer : MonoBehaviour {
 	public bool strikeB1;
 	public bool strikeB2;
 	public bool strikeB3;
+
+	TimeSpan timerTimeSpan;
 
 
 	void Start() {
@@ -38,6 +45,10 @@ public class Timer : MonoBehaviour {
 		strike1.enabled = false;
 		strike2.enabled = false;
 		strike3.enabled = false;
+
+		//TIMESPAN THING
+		timerTimeSpan = TimeSpan.FromSeconds(1);
+		Debug.Log (timerTimeSpan);
 	}
 
 	void Update() {
