@@ -8,11 +8,13 @@ using UnityEngine.UI;
 //HOPEFULLY THIS WILL BE THE ONLY SCRIPT THAT OTHERS WILL GET FROM/CALL FROM
 public class Instructions : MonoBehaviour {
 
+	private MouseMove mouseScript;
+
 	public bool mouseVisLock;
 
 	public GameObject sittingPlayer;
 	public GameObject moveablePlayer;
-	bool moveable4vislock;
+	public Collider couchCol;
 
 	public Text startupText;
 	public Canvas startupCanvas;
@@ -64,6 +66,8 @@ public class Instructions : MonoBehaviour {
 
 
 	void Start() {
+		mouseScript = FindObjectOfType<MouseMove> ();
+
 		moveablePlayer.SetActive (false);
 		startupCanvas.enabled = true;
 		VictoryCanvas.enabled = false;
@@ -90,13 +94,34 @@ public class Instructions : MonoBehaviour {
 			Cursor.lockState = CursorLockMode.None;
 		}
 
+		//STARTUP AND RIGHT-CLICK CODE-------------------------------------------------------------------------------------------
 		if (startupCanvas.enabled == true) {
 			Time.timeScale = 0f;
-			startupText.text = "Get 3hrs of TV time before 12:00 to win. \nPeople will pop by to ask you for something of their color. \nDon't leave them waiting for too long or you'll get a red strike on the right side of your screen. \nThree strikes and you're out. \nRight click to leave the couch and/or drop an item. \nLeft click the couch to sit again. \nPress Q to open the map if you need it.";
-			if (Input.GetMouseButton(0)) {
+			rightViewCanvas.enabled = false;
+			mapButtonCanvas.enabled = false;
+			startupText.text = "Get 3hrs of TV time before 12:00 to win. \nPeople will pop by to ask you for something of their color. \nDon't leave them waiting for too long or you'll get a red strike on the right side of your screen. \nThree strikes and you're out. \nRight click to leave the couch or drop an item. \nLeft click the couch to sit again. \nPress Q to open the map if you need it.";
+			if (Input.GetMouseButton (0) || Input.GetMouseButtonUp (1)) {
 				Time.timeScale = 1f;
 				startupCanvas.enabled = false;
+				rightViewCanvas.enabled = true;
+				mapButtonCanvas.enabled = true;
 			}
+		}
+		else if (tvView && Input.GetMouseButtonUp(1)) {
+			timerGo = false;
+			tvView = false;
+			leftViewCanvas.enabled = false;
+			rightViewCanvas.enabled = false;
+			mapButtonCanvas.enabled = false;
+			sittingPlayer.SetActive (false);
+			moveablePlayer.SetActive (true);
+			mouseVisLock = true;
+		}
+		else if (!tvView && Input.GetMouseButtonUp(1)) {
+			orange = false;
+			green = false;
+			grey = false;
+			yellow = false;
 		}
 			
 		//MAP AND TV VIEW STUFF ----------------------------------------------------------
@@ -108,7 +133,8 @@ public class Instructions : MonoBehaviour {
 		} 
 
 		if (tvView) {
-			if (!mapActive && right) {
+			couchCol.enabled = false;
+			if (!mapActive && right && startupCanvas.enabled == false) {
 				mapCanvas.enabled = false;
 				rightViewCanvas.enabled = true;
 				leftViewCanvas.enabled = false;
@@ -120,7 +146,7 @@ public class Instructions : MonoBehaviour {
 				leftViewCanvas.enabled = true;
 				timerGo = false;
 			}
-		}
+		} else { couchCol.enabled = true; }
 
 		//-------------------------------------------------------------- Time Limit
 		hoursTimer += Time.deltaTime;
@@ -147,7 +173,6 @@ public class Instructions : MonoBehaviour {
 		}
 
 		//TIME accumulated-----------------------------------------------------------------------
-		//oh god math
 		//Debug.Log(timer);
 		if (timer >= 59.5f) { timer = 0; minutes++; }
 		if (minutes >= 60) { minutes = 0; hours++; }
@@ -178,8 +203,13 @@ public class Instructions : MonoBehaviour {
 			mapButtonCanvas.enabled = false;
 		}
 
+		if (VictoryCanvas.enabled == true) {
+			mouseVisLock = false;
+			mouseScript.enabled = false;
+		}
+
 		//GAME OVER--------------------------------------
-		if (hoursTimer >= 240f && !timeReqAchieved) {
+		if ((hoursTimer >= 240f && !timeReqAchieved) || (strikeB1 && strikeB2 && strikeB3)) {
 			hoursText.text = "12:00 AM";
 			GameOverCanvas.enabled = true;
 			Time.timeScale = 0f;
@@ -191,6 +221,7 @@ public class Instructions : MonoBehaviour {
 
 		if (GameOverCanvas.enabled == true) {
 			mouseVisLock = false;
+			mouseScript.enabled = false;
 		}
 
 		//STRIKES--------------------------------------
@@ -199,7 +230,7 @@ public class Instructions : MonoBehaviour {
 		if (strikeB3) { strike3.enabled = true; }
 
 		//more map stuff
-		if (Input.GetKeyUp(KeyCode.Q)) {
+		if (!tvView && Input.GetKeyUp(KeyCode.Q)) {
 			mapActive = !mapActive;
 		}
 
@@ -209,31 +240,13 @@ public class Instructions : MonoBehaviour {
 		} else {
 			holdingItem = false;
 		}
-
-		if (Input.GetMouseButtonUp(1)) {
-			orange = false;
-			green = false;
-			grey = false;
-			yellow = false;
-		}
+		//drop items is under right click code down below
 
 		if (!orange && !green && !grey && !yellow) { heldItemText.text = " "; }
 		if (orange) { heldItemText.text = "Orange"; }
 		if (green) { heldItemText.text = "Green"; }
 		if (grey) { heldItemText.text = "Grey"; }
 		if (yellow) { heldItemText.text = "Yellow"; }
-
-		//LEAVE THE COUCH-------------------------------------------------
-		if (tvView && Input.GetMouseButtonUp(1)) {
-			timerGo = false;
-			tvView = false;
-			leftViewCanvas.enabled = false;
-			rightViewCanvas.enabled = false;
-			mapButtonCanvas.enabled = false;
-			sittingPlayer.SetActive (false);
-			moveablePlayer.SetActive (true);
-			mouseVisLock = true;
-		}
 	}
 		
 

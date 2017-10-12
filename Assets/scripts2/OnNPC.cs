@@ -14,6 +14,7 @@ public class OnNPC : MonoBehaviour {
 	int minutes;
 	float seconds = 59.9888f;
 	float timeLimit;
+	int lockNum;
 
 	void Start() {
 		spawnerScript = FindObjectOfType<NPCSpawner> ();
@@ -22,6 +23,7 @@ public class OnNPC : MonoBehaviour {
 		matNum = spawnerScript.matNum;
 		timeLimit = spawnerScript.tlMin * 60;
 		minutes = spawnerScript.tlMin;
+		lockNum = spawnerScript.locationNum;
 	}
 
 	void Update() {
@@ -34,10 +36,19 @@ public class OnNPC : MonoBehaviour {
 		if (minutes < 10) { minText.text = "0" + minutes.ToString () + ":"; } else { minText.text = minutes.ToString () + ":"; }
 
 
+		if (lockNum == 1) { spawnerScript.locOne = true; } 
+		else if (lockNum == 2) { spawnerScript.locTwo = true; } 
+		else if (lockNum == 3) { spawnerScript.locThree = true; }
+
+
+
 		if (timeLimit <= 0.1f) {
 			if (instrucScript.strikeB1 == false) { instrucScript.strikeB1 = true; }
 			else if (instrucScript.strikeB1 == true && instrucScript.strikeB2 == false) { instrucScript.strikeB2 = true; }
 			else if (instrucScript.strikeB2 == true && instrucScript.strikeB3 == false) { instrucScript.strikeB3 = true; }
+			if (lockNum == 1) { spawnerScript.locOne = false; } 
+			else if (lockNum == 2) { spawnerScript.locTwo = false; } 
+			else if (lockNum == 3) { spawnerScript.locThree = false; } 
 			Destroy (gameObject);
 		}
 	}

@@ -20,13 +20,19 @@ public class Couch : MonoBehaviour {
 			moveablePlayer.SetActive (false);
 			sittingPlayer.SetActive (true);
 
+			if (instrucScript.left == true) {
+				sittingPlayer.transform.Rotate (0f, 80f, 0f);
+			}
+
 			instrucScript.mouseVisLock = false;
 			instrucScript.timerGo = true;
 
 			instrucScript.tvView = true;
 			instrucScript.mapButtonCanvas.enabled = true;
-			if (instrucScript.right) { instrucScript.rightViewCanvas.enabled = true; }
-			else if (instrucScript.left) { instrucScript.leftViewCanvas.enabled = true; }
+			//if (instrucScript.right) { instrucScript.rightViewCanvas.enabled = true; }
+			//else if (instrucScript.left) { instrucScript.leftViewCanvas.enabled = true; }
+			instrucScript.right = true;
+			instrucScript.left = false;
 		}
 	}
 }

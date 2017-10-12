@@ -12,7 +12,7 @@ public class NPCSpawner : MonoBehaviour {
 
 	float startSpawnTimer = 7f;
 
-	int locationNum; //location of spawn based on number generated
+	public int locationNum; //location of spawn based on number generated
 	Vector3 location;
 
 	//check if location of spawn is already filled
@@ -54,37 +54,34 @@ public class NPCSpawner : MonoBehaviour {
 				DecideItem ();
 				tlMin = Random.Range (12, 30);
 				Instantiate (NPC, location, Quaternion.Euler (0f, 180f, 0f));
-				locOne = true;
 				NPCActive = true;
 			}
 			if (locationNum == 2 && !locTwo) {
 				DecideItem ();
 				tlMin = Random.Range (12, 30);
 				Instantiate (NPC, location, Quaternion.Euler (0f, -70f, 0f));
-				locTwo = true;
 				NPCActive = true;
 			}
 			if (locationNum == 3 && !locThree) {
 				DecideItem ();
 				tlMin = Random.Range (12, 30);
 				Instantiate (NPC, location, Quaternion.Euler (0f, -10f, 0f));
-				locThree = true;
 				NPCActive = true;
 			}
 				
 			startSpawnTimer = Random.Range(14f, 30f);
+		}
 
-			if (NPCActive) {
-				alertImage.enabled = true;
-			} else {
-				alertImage.enabled = false;
-			}
+		if (NPCActive) {
+			alertImage.enabled = true;
+		} else {
+			alertImage.enabled = false;
+		}
 
-			if (locOne || locTwo || locThree) {
-				NPCActive = true;
-			} else {
-				NPCActive = false;
-			}
+		if (locOne || locTwo || locThree) {
+			NPCActive = true;
+		} else {
+			NPCActive = false;
 		}
 	}
 
