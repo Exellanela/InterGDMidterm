@@ -13,7 +13,7 @@ public class GreenItem : MonoBehaviour {
 	}
 
 	void OnMouseOver() {
-		Debug.Log ("over g");
+		//Debug.Log ("over g");
 		if (Input.GetMouseButtonUp(0)) {
 			if (instrucScript.holdingItem == false) {
 				instrucScript.green = true;

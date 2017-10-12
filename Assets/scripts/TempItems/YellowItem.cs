@@ -12,7 +12,7 @@ public class YellowItem : MonoBehaviour {
 	}
 
 	void OnMouseOver() {
-		Debug.Log ("over-y");
+		//Debug.Log ("over-y");
 		if (Input.GetMouseButtonUp(0)) {
 			if (instrucScript.holdingItem == false) {
 				instrucScript.yellow = true;
