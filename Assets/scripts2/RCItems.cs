@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class RCItems : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	void Update() {
+		Ray myRay = Camera.main.ScreenPointToRay (Input.mousePosition);
+		float maxRayDist = 50f;
 	}
 }

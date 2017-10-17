@@ -35,7 +35,7 @@ public class NPCSpawner : MonoBehaviour {
 
 
 	void Start() {
-		NPCRend = NPC.GetComponent<Renderer> ();
+		//NPCRend = NPC.GetComponent<Renderer> ();
 		NPCRend.enabled = true;
 		alertImage.enabled = false;
 	}
@@ -52,19 +52,19 @@ public class NPCSpawner : MonoBehaviour {
 			//TESTING--------------------------------------------------------------------------------------------------------------
 			if (locationNum == 1 && !locOne) {
 				DecideItem ();
-				tlMin = Random.Range (12, 30);
+				tlMin = Random.Range (12, 25);
 				Instantiate (NPC, location, Quaternion.Euler (0f, 180f, 0f));
 				NPCActive = true;
 			}
 			if (locationNum == 2 && !locTwo) {
 				DecideItem ();
-				tlMin = Random.Range (12, 30);
+				tlMin = Random.Range (12, 25);
 				Instantiate (NPC, location, Quaternion.Euler (0f, -70f, 0f));
 				NPCActive = true;
 			}
 			if (locationNum == 3 && !locThree) {
 				DecideItem ();
-				tlMin = Random.Range (12, 30);
+				tlMin = Random.Range (12, 25);
 				Instantiate (NPC, location, Quaternion.Euler (0f, -10f, 0f));
 				NPCActive = true;
 			}
@@ -89,13 +89,13 @@ public class NPCSpawner : MonoBehaviour {
 		//INCLUDES MIN BUT NOT MAX
 		locationNum = Random.Range (1, 4);
 		if (locationNum == 1) {
-			location = new Vector3 (-7.2f, 1.3f, 3.6f);
+			location = new Vector3 (-7.2f, -0.1f, 3.6f);
 		}
 		if (locationNum == 2) {
-			location = new Vector3 (-13.8f, 1.3f, 8.5f);
+			location = new Vector3 (-13.8f, -0.1f, 8.5f);
 		}
 		if (locationNum == 3) {
-			location = new Vector3 (-8.9f, 1.3f, 14.6f);
+			location = new Vector3 (-8.9f, -0.1f, 14.6f);
 		}
 	}
 
