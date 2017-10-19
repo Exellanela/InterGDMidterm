@@ -16,6 +16,21 @@ public class OnNPC : MonoBehaviour {
 	float timeLimit;
 	int lockNum;
 
+	//AUDIO
+	int strikeAudNum;
+	public AudioClip excuseRude;
+	public AudioClip wahwah;
+
+	int correctAudNum;
+	public AudioClip wahhoo;
+	public AudioClip yippee;
+	public AudioClip iwuvyou;
+
+	AudioClip curAud;
+	Renderer rend;
+	Collider col;
+
+
 	void Start() {
 		spawnerScript = FindObjectOfType<NPCSpawner> ();
 		instrucScript = FindObjectOfType<Instructions> ();
@@ -24,6 +39,9 @@ public class OnNPC : MonoBehaviour {
 		timeLimit = spawnerScript.tlMin * 60;
 		minutes = spawnerScript.tlMin;
 		lockNum = spawnerScript.locationNum;
+
+		rend = GetComponent<Renderer> ();
+		col = GetComponent < Collider> ();
 	}
 
 	void Update() {
@@ -50,23 +68,35 @@ public class OnNPC : MonoBehaviour {
 			else if (lockNum == 2) { spawnerScript.locTwo = false; } 
 			else if (lockNum == 3) { spawnerScript.locThree = false; } 
 			//Destroy (gameObject);
-			Destroy(transform.parent.gameObject);
+			//Destroy(transform.parent.gameObject);
+			rend.enabled = false;
+			col.enabled = false;
+			DecideFailAudio ();
+			Destroy (transform.parent.gameObject, curAud.length);
 		}
 	}
 
 	void OnMouseOver() {
 		if (Input.GetMouseButtonUp (0)) {
 			if (matNum == 1 && instrucScript.orange == true) {
-				//Destroy (gameObject);
-				Destroy(transform.parent.gameObject);
+				//Destroy(transform.parent.gameObject);
 				instrucScript.orange = false;
 				instrucScript.holdingItem = false;
+
+				rend.enabled = false;
+				col.enabled = false;
+				DecideRightAudio ();
+				Destroy (transform.parent.gameObject, curAud.length);
 			}
 			if (matNum == 2 && instrucScript.green == true) {
-				//Destroy (gameObject);
-				Destroy(transform.parent.gameObject);
+				//Destroy(transform.parent.gameObject);
 				instrucScript.green = false;
 				instrucScript.holdingItem = false;
+
+				rend.enabled = false;
+				col.enabled = false;
+				DecideRightAudio ();
+				Destroy (transform.parent.gameObject, curAud.length);
 			}
 			/*
 			if (matNum == 3 && instrucScript.grey == true) {
@@ -76,11 +106,48 @@ public class OnNPC : MonoBehaviour {
 			}
 			*/
 			if (matNum == 3 && instrucScript.yellow == true) {
-				//Destroy (gameObject);
-				Destroy(transform.parent.gameObject);
+				//Destroy(transform.parent.gameObject);
 				instrucScript.yellow = false;
 				instrucScript.holdingItem = false;
+
+				rend.enabled = false;
+				col.enabled = false;
+				DecideRightAudio ();
+				Destroy (transform.parent.gameObject, curAud.length);
 			}
+		}
+	}
+
+	void DecideFailAudio() {
+		strikeAudNum = Random.Range (1, 4);
+		if (strikeAudNum == 1) {
+			Sound.me.PlaySound (wahwah, 5);
+			curAud = wahwah;
+		}
+		if (strikeAudNum == 2) {
+			Sound.me.PlaySound (excuseRude, 5);
+			curAud = excuseRude;
+		}
+		/*
+		if (strikeAudNum == 3) {
+			Sound.me.PlaySound (????, 5);
+		}
+		*/
+	}
+
+	void DecideRightAudio() {
+		correctAudNum = Random.Range (1, 4);
+		if (correctAudNum == 1) {
+			Sound.me.PlaySound (wahhoo, 5);
+			curAud = wahhoo;
+		}
+		if (correctAudNum == 2) {
+			Sound.me.PlaySound (yippee, 5);
+			curAud = yippee;
+		}
+		if (correctAudNum == 3) {
+			Sound.me.PlaySound (iwuvyou, 5);
+			curAud = iwuvyou;
 		}
 	}
 }

@@ -65,6 +65,17 @@ public class Instructions : MonoBehaviour {
 	public bool yellow;
 	public Image centerMouseImage;
 
+	/*
+	//AUDIO
+	int strikeAudNum;
+	public AudioClip excuseRude;
+	public AudioClip wahwah;
+
+	int correctAudNum;
+	public AudioClip wahhoo;
+	public AudioClip yippee;
+	public AudioClip iwuvyou;
+	*/
 
 	void Start() {
 		mouseScript = FindObjectOfType<MouseMove> ();

@@ -33,6 +33,13 @@ public class NPCSpawner : MonoBehaviour {
 	public int tlMin;
 	public float tlCountdown;
 
+	//AUDIO
+	int audioAlertNum;
+	bool played;
+	public AudioClip shazam;
+	public AudioClip heycharlie;
+	public AudioClip excuseme;
+
 
 	void Start() {
 		//NPCRend = NPC.GetComponent<Renderer> ();
@@ -69,7 +76,7 @@ public class NPCSpawner : MonoBehaviour {
 				NPCActive = true;
 			}
 				
-			startSpawnTimer = Random.Range(14f, 30f);
+			startSpawnTimer = Random.Range (14f, 30f);
 		}
 
 		if (NPCActive) {
@@ -82,6 +89,10 @@ public class NPCSpawner : MonoBehaviour {
 			NPCActive = true;
 		} else {
 			NPCActive = false;
+			played = false;
+		}
+		if ((locOne || locTwo || locThree) && played == false) {
+			DecideAlertAudio ();
 		}
 	}
 
@@ -89,13 +100,13 @@ public class NPCSpawner : MonoBehaviour {
 		//INCLUDES MIN BUT NOT MAX
 		locationNum = Random.Range (1, 4);
 		if (locationNum == 1) {
-			location = new Vector3 (-7.2f, -0.1f, 3.6f);
+			location = new Vector3 (-7.2f, 1.74f, 3.6f);
 		}
 		if (locationNum == 2) {
-			location = new Vector3 (-13.8f, -0.1f, 8.5f);
+			location = new Vector3 (-13.8f, 1.74f, 8.5f);
 		}
 		if (locationNum == 3) {
-			location = new Vector3 (-8.9f, -0.1f, 14.6f);
+			location = new Vector3 (-8.9f, 1.74f, 14.6f);
 		}
 	}
 
@@ -114,6 +125,22 @@ public class NPCSpawner : MonoBehaviour {
 		*/
 		if (matNum == 3) {
 			NPCRend.material = yellowMat;
+		}
+	}
+
+	void DecideAlertAudio() {
+		audioAlertNum = Random.Range (1, 4);
+		if (audioAlertNum == 1) {
+			Sound.me.PlaySound (shazam, 5);
+			played = true;
+		}
+		if (audioAlertNum == 2) {
+			Sound.me.PlaySound (heycharlie, 5);
+			played = true;
+		}
+		if (audioAlertNum == 3) {
+			Sound.me.PlaySound (excuseme, 5);
+			played = true;
 		}
 	}
 }
