@@ -49,19 +49,22 @@ public class OnNPC : MonoBehaviour {
 			if (lockNum == 1) { spawnerScript.locOne = false; } 
 			else if (lockNum == 2) { spawnerScript.locTwo = false; } 
 			else if (lockNum == 3) { spawnerScript.locThree = false; } 
-			Destroy (gameObject);
+			//Destroy (gameObject);
+			Destroy(transform.parent.gameObject);
 		}
 	}
 
 	void OnMouseOver() {
 		if (Input.GetMouseButtonUp (0)) {
 			if (matNum == 1 && instrucScript.orange == true) {
-				Destroy (gameObject);
+				//Destroy (gameObject);
+				Destroy(transform.parent.gameObject);
 				instrucScript.orange = false;
 				instrucScript.holdingItem = false;
 			}
 			if (matNum == 2 && instrucScript.green == true) {
-				Destroy (gameObject);
+				//Destroy (gameObject);
+				Destroy(transform.parent.gameObject);
 				instrucScript.green = false;
 				instrucScript.holdingItem = false;
 			}
@@ -73,7 +76,8 @@ public class OnNPC : MonoBehaviour {
 			}
 			*/
 			if (matNum == 3 && instrucScript.yellow == true) {
-				Destroy (gameObject);
+				//Destroy (gameObject);
+				Destroy(transform.parent.gameObject);
 				instrucScript.yellow = false;
 				instrucScript.holdingItem = false;
 			}

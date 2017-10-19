@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class GreenItem : MonoBehaviour {
 
 	private Instructions instrucScript;
+	public GameObject player;
+	float distance;
 
 
 	void Start() {
@@ -13,10 +15,14 @@ public class GreenItem : MonoBehaviour {
 	}
 
 	void OnMouseOver() {
-		//Debug.Log ("over g");
-		if (Input.GetMouseButtonUp(0)) {
-			if (instrucScript.holdingItem == false) {
-				instrucScript.green = true;
+		//Debug.Log ("over-y");
+		distance = Vector3.Distance (player.transform.position, transform.position);
+
+		if (distance < 7f) {
+			if (Input.GetMouseButtonUp (0)) {
+				if (instrucScript.holdingItem == false) {
+					instrucScript.green = true;
+				}
 			}
 		}
 	}

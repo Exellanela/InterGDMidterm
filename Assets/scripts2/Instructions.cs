@@ -18,6 +18,7 @@ public class Instructions : MonoBehaviour {
 
 	public Text startupText;
 	public Canvas startupCanvas;
+	public Canvas controlsCanvas;
 
 	//TIME STUFF------------------------
 	float timer = 0f;
@@ -37,7 +38,7 @@ public class Instructions : MonoBehaviour {
 	public Canvas VictoryCanvas;
 	public Canvas GameOverCanvas;
 	public Canvas mapCanvas;
-	bool mapActive;
+	public bool mapActive;
 
 	//TV VIEW STUFF--------------------------------
 	public Image strike1;
@@ -73,6 +74,7 @@ public class Instructions : MonoBehaviour {
 		VictoryCanvas.enabled = false;
 		GameOverCanvas.enabled = false;
 		leftViewCanvas.enabled = false;
+		controlsCanvas.enabled = false;
 		mapCanvas.enabled = false;
 		strike1.enabled = false;
 		strike2.enabled = false;
@@ -99,6 +101,7 @@ public class Instructions : MonoBehaviour {
 			Time.timeScale = 0f;
 			rightViewCanvas.enabled = false;
 			mapButtonCanvas.enabled = false;
+			/*
 			startupText.text = "Get 3hrs of TV time before 12:00 to win. \nPeople will pop by to ask you for something of their color. \nDon't leave them waiting for too long or you'll get a red strike on the right side of your screen. \nThree strikes and you're out. \nRight click to leave the couch or drop an item. \nLeft click the couch to sit again. \nPress Q to open the map if you need it.";
 			if (Input.GetMouseButton (0) || Input.GetMouseButtonUp (1)) {
 				Time.timeScale = 1f;
@@ -106,6 +109,7 @@ public class Instructions : MonoBehaviour {
 				rightViewCanvas.enabled = true;
 				mapButtonCanvas.enabled = true;
 			}
+			*/
 		}
 		else if (tvView && Input.GetMouseButtonUp(1)) {
 			timerGo = false;
@@ -130,7 +134,12 @@ public class Instructions : MonoBehaviour {
 			rightViewCanvas.enabled = false;
 			leftViewCanvas.enabled = false;
 			timerGo = false;
-		} 
+			mouseScript.enabled = false;
+			//mouseVisLock = true;
+		} else if (!mapActive && !tvView) {
+			mapCanvas.enabled = false;
+			mouseScript.enabled = true;
+		}
 
 		if (tvView) {
 			couchCol.enabled = false;

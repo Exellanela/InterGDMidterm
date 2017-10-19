@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 220b2b49d560f42479d3d54166ea179f
+timeCreated: 1508249458
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: A little sunshine
+  fontNames:
+  - A little sunshine
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

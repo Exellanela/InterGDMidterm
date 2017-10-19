@@ -2,35 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-//NOT WORKING
 public class ColorLerp : MonoBehaviour {
-
-	//public Color orange;
-	//public Color green;
-	//public Color yellow;
-	public Color white;
-	public Material matColor;
-	Color orgColor;
-	Renderer rend;
 
 	public GameObject player;
 	float distance;
 
+	public Color orgColor;
+	public Color white;
+	Renderer rend;
+
+	float floor;
+	float ceiling;
+	float emission;
+	Color emitColor;
+
+
 	void Start() {
-		rend = GetComponent<Renderer> ();
-		orgColor = matColor.color;
-		rend.material.color = white;
+		rend = GetComponent<Renderer>();
+		floor = 0.1f;
+		ceiling = 0.9f;
 	}
 
 	void Update() {
-		Debug.Log (distance);
-		distance = Vector3.Distance (player.transform.position, transform.position);
+		distance = Vector3.Distance (transform.position, player.transform.position);
 
+		emission = floor + Mathf.PingPong (Time.time, ceiling - floor);
+		emitColor = white * Mathf.LinearToGammaSpace (emission);
 		if (distance < 7f) {
-			rend.material.color = Color.Lerp (white, orgColor, distance);
-		} else {
 			rend.material.color = orgColor;
+			rend.material.SetColor ("_EmissionColor", Color.black);
+		} else {
+			rend.material.color = white;
+			rend.material.SetColor ("_EmissionColor", emitColor);
 		}
 	}
 }
